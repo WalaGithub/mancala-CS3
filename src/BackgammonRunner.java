@@ -8,6 +8,7 @@ class BackgammonRunner extends JFrame {
 	public BackgammonRunner()
 	{
 		super("Backgammon");
+        //yes
 
 		setSize(WIDTH,HEIGHT);
 

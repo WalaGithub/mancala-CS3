@@ -32,7 +32,9 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, KeyList
 		window.fillRect(mar, mar, w - 2 * mar, h - 2 * mar);
 		int inX = mar+fr;
 		int inY = mar+fr;
-		int inW = w-2*(mar+fr);
+		int offW = 140;
+		int inW = w-2*(mar+fr)-offW;
+		int offX = inX+inW;
 		int inH = h-2*(mar+fr);
 
 		window.setColor(new Color(170, 140, 90));
@@ -41,6 +43,13 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, KeyList
 		int midX = inX + (inW - barW) / 2;
 		window.setColor(new Color(90, 50, 25));
 		window.fillRect(midX, inY, barW, inH);
+//
+		window.setColor(new Color(80, 45, 25));
+		window.fillRect(offX, inY, offW, inH);
+
+		window.setColor(Color.BLACK);
+		window.drawRect(offX,inY,offW,inH);
+		window.drawLine(offX, inY, offX, inY + inH);
 
 		int hal = inH /2;
 		int pH = (int) ((int) hal*.90);
@@ -57,31 +66,7 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, KeyList
 		}
 		window.setColor(Color.BLACK);
 		window.drawRect(mar,mar,w-2*mar,h-2*mar);
-//		for(Ball ball:balls) {
-//			ball.paint(window);
-//			//make the Ball move
-//			ball.bounce();
-//			ball.bouncePaddle(paddle);
-//			for (Brick x : bricks) {
-//				ball.bounceStuff(x);
-//				if (ball.intersects(x)) {
-//					bricks.remove(x);
-//				}
-//			}
-//			ball.setX(ball.getX() + ball.getxSpeed());
-//			ball.setY(ball.getY() + ball.getySpeed());
-//			if(ball.getY()+(ball.getH()/10)+ball.getH()>768){
-//				balls.remove(ball);
-//			}
-//		}
-//        Font big=new Font("Big",Font.BOLD,175);
 
-//            window.setColor(Color.BLACK); window.fillRect( 0,0, 1024, 768); // makes the background white
-//            window.setColor(Color.WHITE); window.drawRect( 0,0, 1024, 768); // draws a black box around the outside
-//            window.setFont(big);
-//            window.drawString("YOU WON",0,200);
-//            window.drawString("GOOD JOB",0,400);
-//            gameEndW=true;
         }
 
 	private void fillTriangle(Graphics window, int x, int bY, int w, int h, boolean up) {
@@ -90,7 +75,7 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, KeyList
 		if (up) {
 			ys = new int[]{bY, bY, bY - h};
 		} else {
-			ys = new int[]{bY,bY,bY,bY+h};
+			ys = new int[]{bY,bY,bY+h};
 		}
 		window.fillPolygon(xs,ys,3);
 	}

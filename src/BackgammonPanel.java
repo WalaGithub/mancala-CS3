@@ -53,7 +53,7 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, KeyList
 
 		int hal = inH /2;
 		int pH = (int) ((int) hal*.90);
-		int pW = (inW-barW) /2;
+		int pW = (inW-barW) /12;
 		for (int i = 0; i < 12; i++) {
 			int topX;
 			if(i<6) {

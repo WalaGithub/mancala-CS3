@@ -18,7 +18,7 @@ public class Dice extends JPanel {
         int h=fm.getAscent();
         int w=fm.stringWidth(""+number);
         window.setColor(Color.BLACK);
-        window.drawString(""+number,x-(w/2), (y+15));
+        window.drawString(""+number,x-(w/2), (y+(15)-((30-h)/2)));
         window.drawRect(10,(y+15),10000000,1);
         window.drawRect(10,(y+15-(h/2)),10000000,1);
     }

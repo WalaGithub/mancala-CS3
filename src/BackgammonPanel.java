@@ -69,6 +69,7 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, KeyList
 		window.setColor(Color.BLACK);
 		window.drawRect(mar,mar,w-2*mar,h-2*mar);
         //board end
+        d1.paiut(window,130,130);
         }
 
 	private void fillTriangle(Graphics window, int x, int bY, int w, int h, boolean up) {

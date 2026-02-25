@@ -7,6 +7,7 @@ public class Checker extends Hitbox {
         color=c;
     }
 }
+  /*
     /*public void bouncePaddle(Paddle o){
         double midX=getX()+ getW()/2;
         double midXo=o.getX()+o.getW()/2;
@@ -34,12 +35,12 @@ public class Checker extends Hitbox {
 //            }
         }
     }*/
-    public void paint(Graphics window) {
-        window.setColor(Color.ORANGE);
-        int x=
-        int y=getY();
-        int h=getH();
-        int w=getW();
+//  public void paint(Graphics window) {
+//      window.setColor(Color.ORANGE);
+//      int x=0;
+//        int y=getY();
+//        int h=getH();
+//        int w=getW();
 //        Image baguette=Toolkit.getDefaultToolkit().getImage("boulet.png");
 //        window.drawImage(baguette, x+(w/2)/30*15-10, y-(h/2)/30*15-30-15, w, h, this);
 //        window.fillOval(x,y+(h/10),w,h);
@@ -60,5 +61,5 @@ public class Checker extends Hitbox {
 //        window.fillOval((x+w/2)-25*(w/50),125*(h/500)+y,w,5*(h/50));
 //        window.setColor(DARK_BLUE);
 //        window.fillOval((x+w/2)-w/10,38*(h/500)+y,w/5,2*(h/50));
-    }
-}
+ // }
+//}

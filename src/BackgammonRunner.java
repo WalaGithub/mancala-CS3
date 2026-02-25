@@ -1,5 +1,5 @@
 import javax.swing.*;
-
+//
 class BackgammonRunner extends JFrame {
 	private static final int WIDTH = 1024;
 	private static final int HEIGHT = 768;

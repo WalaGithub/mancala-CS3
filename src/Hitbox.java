@@ -1,5 +1,5 @@
 import java.awt.*;
-
+//
 /*
  *	Complete the Brick class.
  *  Use ClassTester to test your code.
@@ -7,7 +7,7 @@ import java.awt.*;
  */
 public class Hitbox extends Canvas {
 	//these are instance variables
-	private int x, y, w, h;
+	int x, y, w, h;
 	public Hitbox() {
 		x=437;
 		y=364;

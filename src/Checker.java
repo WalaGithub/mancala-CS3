@@ -1,5 +1,5 @@
 import java.awt.*;
-
+//
 public class Checker extends Hitbox {
     char color;
     public Checker(int ex, int wy, int wd, int ht, int sp,char c){
@@ -34,12 +34,9 @@ public class Checker extends Hitbox {
 //            }
         }
     }*/
-    public int getySpeed() {
-        return ySpeed/4;
-    }
     public void paint(Graphics window) {
         window.setColor(Color.ORANGE);
-        int x=getX();
+        int x=
         int y=getY();
         int h=getH();
         int w=getW();

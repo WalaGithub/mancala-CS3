@@ -21,8 +21,8 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
 
     public BackgammonPanel() {
         mouse_button = "NO BUTTON CLICKED!";
-        d1 = new Dice();
-        d2 = new Dice();
+        d1 = new Dice(412,382);
+        d2 = new Dice(412,382);
         //DO NOT TOUCH these 3 lines
         //these lines load the listener that listens for the keyboard presses
 //		addKeyListener( this );   	//
@@ -92,11 +92,8 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
         window.setColor(Color.BLACK);
         window.drawRect(mar, mar, w - 2 * mar, h - 2 * mar);
         //board end
-        d1.paiut(window, 612, 382);
-        d2.paiut(window, 412, 382);
-
-//        d1.paint(window,130,130);
-
+        d1.paiut(window);
+        d2.paiut(window);
     }
 
     private void fillTriangle(Graphics window, int x, int bY, int w, int h, boolean up) {
@@ -183,13 +180,10 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
             mouse_button = "LEFT CLICK";
-            // Add a Bob to the list at this location
         } else if (e.getButton() == MouseEvent.BUTTON3) {
             mouse_button = "RIGHT CLICK";
         }
-        // Write the code to remove the clicked on Bobs
-    } //How can I remove the original cursor so only bob.png is visible when on
-    // this window for this Java program that displays cursor information and shows bob.png:
+    }
 
     public void run() {
         try {

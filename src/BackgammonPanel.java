@@ -7,6 +7,11 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import javax.swing.*;
+import java.util.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
 //
 class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMotionListener {
     Dice d1;
@@ -34,6 +39,11 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
 		window.setColor(Color.WHITE); window.drawRect( 0,0, 1024, 768); // draws a black box around the outside
 
 		window.setColor(Color.BLUE); // to change fonts, color, etc: go to the Graphics Intro Folder
+		window.setColor(Color.WHITE);
+		window.drawString("Mouse coordinates " + "(" + MouseInfo.getPointerInfo().getLocation().x + "   " + MouseInfo.getPointerInfo().getLocation().y + ")", 250, 20);
+		window.setColor(Color.RED);
+		window.drawString("Mouse coordinates " + "(" + mouse_x + "   " + mouse_y + ")", 600, 20);
+
 		int w = getWidth();
 		int h = getHeight();
 		int mar = 30;
@@ -83,11 +93,7 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
 
 //        d1.paint(window,130,130);
 
-		window.setColor(Color.WHITE);
-		window.drawString("Mouse coordinates " + "(" + MouseInfo.getPointerInfo().getLocation().x + "   " + MouseInfo.getPointerInfo().getLocation().y + ")", 250, 30);
-		window.setColor(Color.RED);
-		window.drawString("Mouse coordinates " + "(" + mouse_x + "   " + mouse_y + ")", 250, 50);
-        }
+		}
 
 	private void fillTriangle(Graphics window, int x, int bY, int w, int h, boolean up) {
 		int[] xs = {x, x + w, x + w / 2};

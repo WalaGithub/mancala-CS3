@@ -77,7 +77,7 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
         window.drawLine(offX, inY, offX, inY + inH);
 
         int hal = inH / 2;
-        int pH = (int) ((int) hal * .90);
+        int pH = (int) (hal * .90);
         int pW = (inW - barW) / 12;
         for (int i = 0; i < 12; i++) {
             int topX;

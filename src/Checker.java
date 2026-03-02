@@ -1,12 +1,21 @@
+import javax.swing.*;
 import java.awt.*;
 //
-public class Checker extends Hitbox {
+public class Checker extends JPanel {
     char color;
-    public Checker(int ex, int wy, int wd, int ht, int sp,char c){
-        super(ex, wy, wd, ht);
+    int x,y;
+    public Checker(int ex, int wy, char c){
+        x=ex;
+        y=wy;
         color=c;
     }
- public void paint(Graphics window) {
-//
-}
+    public void paint(Graphics window) {
+        if(color=='w'){
+            window.setColor(Color.WHITE);
+        }
+        else if(color=='b'){
+            window.setColor(Color.BLACK);
+        }
+        window.fillOval(x-22,y-22,55,55);
+    }
 }

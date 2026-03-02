@@ -18,11 +18,16 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
     Dice d2;
     private String mouse_button;
     private int mouse_x, mouse_y;
+    private triangle[] triangles;
 
     public BackgammonPanel() {
         mouse_button = "NO BUTTON CLICKED!";
         d1 = new Dice(412,382);
         d2 = new Dice(612,382);
+        triangles=new triangle[24];
+        for(int i=0; i<24; i++){
+            triangles[i]=new triangle();
+        }
         //DO NOT TOUCH these 3 lines
         //these lines load the listener that listens for the keyboard presses
 //		addKeyListener( this );   	//
@@ -92,8 +97,14 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
         window.setColor(Color.BLACK);
         window.drawRect(mar, mar, w - 2 * mar, h - 2 * mar);
         //board end
+        d1.x=15*getWidth()/24-50;
+        d1.y=getHeight()/2;
+        d2.x=15*getWidth()/24+50;
+        d2.y=getHeight()/2;
         d1.paiut(window);
         d2.paiut(window);
+        triangles[0].add(new Checker(88,88,'w'));
+        triangles[0].paint(window);
     }
 
     private void fillTriangle(Graphics window, int x, int bY, int w, int h, boolean up) {

@@ -8,13 +8,12 @@ public class Dice extends JPanel {
         number=(int) (Math.random()*6)+1;
         x=X;
         y=Y;
-        canRoll=false;
+        canRoll=true;
     }
     public void roll(){
         if(canRoll){
             number=(int) (Math.random()*6)+1;
         }
-        canRoll=false;
     }
     public void paiut(Graphics window){
         window.setColor(Color.DARK_GRAY);

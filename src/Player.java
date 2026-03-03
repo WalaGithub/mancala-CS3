@@ -9,16 +9,9 @@ public class Player {
         name=scanner.nextLine();
     }
     public void turnStart(Dice d1, Dice d2){
-        System.out.println("Please roll dice");
+        System.out.println("Please roll dice and hit enter when complete");
         d1.canRoll=true;
-        try{
-            while(d1.canRoll){
-                Thread.sleep(10);
-            }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.println(scanner.nextLine());
         System.out.println("Thank you");
     }
 }

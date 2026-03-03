@@ -18,8 +18,8 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
     private String mouse_button;
     private int mouse_x, mouse_y;
     private triangle[] triangles;
-    Player pW;
-    Player pB;
+    Player plW;
+    Player plB;
     public BackgammonPanel() {
         int w = getWidth();
         int h = getHeight();
@@ -32,8 +32,8 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
                 triangles[i]=new triangle(true);
             } else triangles[i] = new triangle(false);
         }
-        pW=new Player('w');
-        pB=new Player('b');
+        plW=new Player('w');
+        plB=new Player('b');
         // this for loop runs once and paints initial checker positions
         // this for loop runs once and paints initial checker positions
         for (int i = 0; i < triangles.length; i++) {
@@ -161,7 +161,7 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
         for(triangle t:triangles) {
             t.paint(window);
         }
-        pW.turnStart(d1,d2);
+        plW.turnStart(d1,d2);
     }
 
     private void fillTriangle(Graphics window, int x, int bY, int w, int h, boolean up) {

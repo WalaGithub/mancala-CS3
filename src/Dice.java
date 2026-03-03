@@ -3,13 +3,18 @@ import java.awt.*;
 
 public class Dice extends JPanel {
     int number, x, y;
+    boolean canRoll;
     public Dice(int X, int Y){
         number=(int) (Math.random()*6)+1;
         x=X;
         y=Y;
+        canRoll=false;
     }
     public void roll(){
-        number=(int) (Math.random()*6)+1;
+        if(canRoll){
+            number=(int) (Math.random()*6)+1;
+        }
+        canRoll=false;
     }
     public void paiut(Graphics window){
         window.setColor(Color.DARK_GRAY);

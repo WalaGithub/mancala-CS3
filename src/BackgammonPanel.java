@@ -21,6 +21,8 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
     private triangle[] triangles;
 
     public BackgammonPanel() {
+        int w = getWidth();
+        int h = getHeight();
         mouse_button = "NO BUTTON CLICKED!";
         d1 = new Dice(412,382);
         d2 = new Dice(612,382);
@@ -35,12 +37,12 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
         for (int i = 0; i < triangles.length; i++) {
 
             int col = i % 12;
-            int x = 88 + col * 55;
+            int x = 88 + col * 57;
             if (col > 5) x += 70;
 
             boolean topRow = (i < 12);
 
-            int baseY = topRow ? 88 : (768 - 88);
+            int baseY = topRow ? 88 : (640);
             int dir   = topRow ? 55 : -55;
 
             //5
@@ -119,21 +121,17 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
         int inW = w - 2 * (mar + fr) - offW;
         int offX = inX + inW;
         int inH = h - 2 * (mar + fr);
-
         window.setColor(new Color(170, 140, 90));
         window.fillRect(inX, inY, inW, inH);
-
         int midX = inX + (inW - barW) / 2;
         window.setColor(new Color(90, 50, 25));
         window.fillRect(midX, inY, barW, inH);
 ////
         window.setColor(new Color(80, 45, 25));
         window.fillRect(offX, inY, offW, inH);
-
         window.setColor(Color.BLACK);
         window.drawRect(offX, inY, offW, inH);
         window.drawLine(offX, inY, offX, inY + inH);
-
         int hal = inH / 2;
         int pH = (int) (hal * .90);
         int pW = (inW - barW) / 12;

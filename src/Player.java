@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Player {
 //    final String name;
     final char c;
-//    final Scanner scanner=new Scanner(System.in);
+//    final Scanner scanner=new Scanner(System.in);//
     public Player(char color){
         c=color;
         System.out.println("Player "+c+" please type your name");

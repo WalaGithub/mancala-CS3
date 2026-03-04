@@ -20,6 +20,7 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
     private triangle[] triangles;
     Player plW;
     Player plB;
+    boolean rolled=false;
     public BackgammonPanel() {
         int w = getWidth();
         int h = getHeight();
@@ -92,7 +93,8 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
         mouse_x = 0;
         mouse_y = 0;
         addMouseMotionListener(this);
-        new Thread(this).start();    //
+        new Thread(this).start();
+        plW.canRoll=true;
     }
 
     public void paint(Graphics window)// all other paint methods and game logic goes in here.
@@ -160,9 +162,22 @@ class BackgammonPanel extends JPanel implements Runnable, MouseListener, MouseMo
         for(triangle t:triangles) {
             t.paint(window);
         }
-        plW.turnStart(d1,d2);
+        rolled=false;
     }
-
+    public void turn(){
+        if(plW.canRoll){
+            plW.canRoll=false;
+            System.out.println("player W rolled");
+            int d1n=d1.number;
+            int d2n=d2.number;
+        }
+        if(plB.canRoll){
+            plB.canRoll=false;
+            System.out.println("player B rolled");
+            int d1n=d1.number;
+            int d2n=d2.number;
+        }
+    }
     private void fillTriangle(Graphics window, int x, int bY, int w, int h, boolean up) {
         int[] xs = {x, x + w, x + w / 2};
         int[] ys;
@@ -252,6 +267,9 @@ bbbbbbbbbbbbbbbbbbbbbbbb
             if((mouse_x>c1[0] && mouse_x<c1[1] && mouse_y>c1[2] && mouse_y<c1[3]) || (mouse_x>c2[0] && mouse_x<c2[1] && mouse_y>c2[2] && mouse_y<c2[3])){
                 d1.roll();
                 d2.roll();
+                rolled=true;
+                System.out.println("rolled");
+                turn();
             }
         } else if (e.getButton() == MouseEvent.BUTTON3) {
             mouse_button = "RIGHT CLICK";

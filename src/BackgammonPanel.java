@@ -129,8 +129,19 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
     }
     //fix/check logic here
     int travelIndex(int bI,char c) {
-        if(c=='w') return bI;
-        else return 23-bI;
+        if(c=='w') {
+            if (bI < 12) {
+                return 11-bI;
+            } else {
+                return bI;
+            }
+        }
+        else {
+            if (bI >= 12) {
+                return 23-bI;
+            }
+            else return 12+bI;
+        }
     }
 
     public void paint(Graphics window)// all other paint methods and game logic goes in here.
@@ -180,9 +191,6 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
         pCursor(window);
         pHUD(window);
     }
-
-
-
     private void fillTriangle(Graphics window, int x, int bY, int w, int h, boolean up) {
         int[] xs = {x, x + w, x + w / 2};
         int[] ys;
@@ -193,14 +201,12 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
         }
         window.fillPolygon(xs, ys, 3);
     }
-
     void pCursor(Graphics window) {
         pointHigh(window, cursorP, new Color(255, 220, 0, 180), 4);
         if (selectedP != -1) {
             pointHigh(window,selectedP,new Color(0,255,80,180),4);
         }
     }
-
     private void pointHigh(Graphics window, int i, Color color, int t) {
         int c12=i%12;
         int p = in_x+c12*pw+(c12>=6?bar:0);
@@ -238,13 +244,10 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
             window.drawString(moveError,30,745);
         }
     }
-
-
     @Override
     public void keyTyped(KeyEvent e) {
 
     }
-
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
@@ -288,13 +291,12 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
             else endTurn();
         }
     }
-
     void tryMove(int f, int t) {
         int tF = travelIndex(f, cPlayer.c);
         int tT = travelIndex(t, cPlayer.c);
         int dist = tT-tF;
         if (dist <= 0) {
-            moveError = "Move forward dir " +
+            moveError = "Move forward  " +
                     (cPlayer.c == 'w' ? "(follow top row right then bottom row right" : "(follow bottom row left then top row left)");
             return;
         }
@@ -342,7 +344,6 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
         System.out.println("Moved from " + f + " to " + t);
         selectedP = -1;
     }
-
     @Override
     public void keyReleased(KeyEvent e) {
 

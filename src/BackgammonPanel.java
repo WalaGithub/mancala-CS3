@@ -41,8 +41,8 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
             triangles[i]=new triangle(i<12);
         }
         startCheck();
-        plW=new Player('w');
-        plB=new Player('b');
+        plW=new Player('b');
+        plB=new Player('w');
         cPlayer = plW;
         cPlayer.beginTurn();
         // this for loop runs once and paints initial checker positions

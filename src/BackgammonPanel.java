@@ -232,17 +232,20 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
         second.setStroke(old);
     }
     private void pHUD(Graphics window) {
-        window.setFont(new Font("Arial", Font.BOLD, 14));
+        window.setFont(new Font("Arial", Font.BOLD, 25));
         window.setColor(Color.WHITE);
-        window.drawString("Player " + cPlayer.c + "'s turn", 30, 20);
+        window.drawString("Player " + (""+cPlayer.c).toUpperCase() + "'s turn", 30, 20);
         if (!cPlayer.rolled) {
             window.setColor(Color.YELLOW);
-            window.drawString("Press G to roll", 200, 20);
+            window.drawString("Press G to roll", 200, 20+40);
         }
         else {
             window.setColor(Color.WHITE);
-            window.drawString("Dice: " + d1.number + " + " + d2.number, 200, 20);
-            window.drawString("left or right to choose, d to pick, f to move",330,20);
+            if(d1.number==d2.number) {
+                window.drawString("Double!: " + d1.number + " + " + d2.number + " go twice \uD83D\uDC45\uD83D\uDC45", 200, 20+40);
+            }
+            else window.drawString("Dice: " + d1.number + " + " + d2.number, 200, 20+40);
+            window.drawString("arrows to browse, d to pick, f to move",330,20+710);
         }
         if(moveError!=null) {
             if(iii==500000 || iii==499999) a = (int) (Math.random() * 2) +1;;
@@ -275,7 +278,12 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
                 d2.roll();
                 cPlayer.onDiceRolled();
                 moveError=null;
-                System.out.println("Rolled: "+d1.number+" + "+d2.number);
+                if(d1.number==d2.number) {
+                    d1.doubdoub=true;
+                    d2.doubdoub=true;
+                    System.out.println("Rolled a double!: "+d1.number+" + "+d2.number);
+                }
+                else System.out.println("Rolled: "+d1.number+" + "+d2.number);
             }
             return;
         }
@@ -332,11 +340,15 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
         }
         if (!d1.used && d1.number == dist) {
             moveChecker(f, t, cPlayer.c);
-            d1.used=true;
+            if(d1.doubdoub) {
+                d1.doubdoub=false;
+            }
+            else d1.used=true;
             moveError=null;
         } else if (!d2.used && d2.number == dist) {
             moveChecker(f, t, cPlayer.c);
-            d2.used=true;
+            if(d2.doubdoub) d2.doubdoub=false;
+            else d2.used=true;
             moveError=null;
         }
         else {

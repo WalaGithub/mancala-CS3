@@ -5,6 +5,7 @@ public class Dice extends JPanel {
     int number, x, y;
     boolean canRoll;
     boolean used;
+    public boolean doubdoub;
     public Dice(int X, int Y){
         number=(int) (Math.random()*6)+1;
         x=X;
@@ -15,6 +16,10 @@ public class Dice extends JPanel {
     public void roll(){
         number = (int)(Math.random()*6)+1;
         used = false;
+    }
+
+    public boolean isDouble() {
+        return doubdoub;
     }
     public void paiut(Graphics window){
         Color bg = used ? new Color(100, 100, 100) : Color.LIGHT_GRAY;

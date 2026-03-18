@@ -337,11 +337,15 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
         }
         if (!d1.used && d1.number == dist) {
             moveChecker(f, t, cPlayer.c);
-            d1.used=true;
+            if(d1.doubdoub) {
+                d1.doubdoub=false;
+            }
+            else d1.used=true;
             moveError=null;
         } else if (!d2.used && d2.number == dist) {
             moveChecker(f, t, cPlayer.c);
-            d2.used=true;
+            if(d2.doubdoub) d2.doubdoub=false;
+            else d2.used=true;
             moveError=null;
         }
         else {

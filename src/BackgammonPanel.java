@@ -25,7 +25,6 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
     private String mouse_button;
     private int mouse_x, mouse_y;
     private triangle[] triangles;
-    //
     Player plW;
     Player plB;
     Player cPlayer;
@@ -156,8 +155,8 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
         window.drawRect(0, 0, 1024, 768); // draws a black box around the outside
 
         window.setColor(Color.BLUE); // to change fonts, color, etc: go to the Graphics Intro Folder
-//        window.setColor(Color.WHITE);
-//        window.drawString("Mouse coordinates " + "(" + MouseInfo.getPointerInfo().getLocation().x + "   " + MouseInfo.getPointerInfo().getLocation().y + ")", 250, 20);
+        window.setColor(Color.WHITE);
+        window.drawString("Mouse coordinates " + "(" + MouseInfo.getPointerInfo().getLocation().x + "   " + MouseInfo.getPointerInfo().getLocation().y + ")", 250, 20);
         window.setColor(Color.RED);
         window.drawString("Mouse coordinates " + "(" + mouse_x + "   " + mouse_y + ")", 600, 20);
         window.setColor(new Color(110, 60, 30));
@@ -335,11 +334,11 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
             return;
         }
         if (!d1.used && d1.number == dist) {
-            moveChecker((f), t);
+            moveChecker(f, t, cPlayer.c);
             d1.used=true;
             moveError=null;
         } else if (!d2.used && d2.number == dist) {
-            moveChecker(f, t);
+            moveChecker(f, t, cPlayer.c);
             d2.used=true;
             moveError=null;
         }
@@ -353,10 +352,11 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
             endTurn();
         }
     }
-    private void moveChecker(int f, int t) {
+    private void moveChecker(int f, int t, char cl) {
         triangle src = triangles[f];
         triangle des = triangles[t];
         if(src.x.isEmpty()) return;
+        if(!des.x.isEmpty() && des.x.peek().color!=cl) return;
         int c12=t%12;
         int newX  = in_x + c12 * pw+ pw / 2 + (c12 >= 6 ? bar : 0);
         boolean top  = t < 12;

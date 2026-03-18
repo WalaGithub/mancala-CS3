@@ -25,6 +25,7 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
     private String mouse_button;
     private int mouse_x, mouse_y;
     private triangle[] triangles;
+    //
     Player plW;
     Player plB;
     Player cPlayer;

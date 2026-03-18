@@ -4,9 +4,11 @@ import java.util.Stack;
 public class triangle {
     Stack<Checker> x;
     boolean iUD;
-    public triangle(boolean isUpsideDown){
+    boolean iJ;
+    public triangle(boolean isUpsideDown, boolean isJail){
         x=new Stack<>();
         iUD = isUpsideDown;
+        iJ=isJail;
     }
     public void add(Checker c){
         x.add(c);

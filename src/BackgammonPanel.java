@@ -36,9 +36,9 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
     public BackgammonPanel() {
         d1 = new Dice(d1_x,d_y);
         d2 = new Dice(d2_x,d_y);
-        triangles=new triangle[24];
-        for(int i=0; i<24; i++){
-            triangles[i]=new triangle(i<12);
+        triangles=new triangle[26];
+        for(int i=0; i<26; i++){
+            triangles[i]=new triangle(i<12,i>23);
         }
         startCheck();
         plW=new Player('w');
@@ -187,8 +187,11 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
         d2.x=d2_x;
         d1.paiut(window);
         d2.paiut(window);
+        int i=0;
         for (triangle t : triangles) {
+            if(i==24) break;
             t.paint(window);
+            i++;
         }
         pCursor(window);
         pHUD(window);
@@ -350,7 +353,16 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
         triangle src = triangles[f];
         triangle des = triangles[t];
         if(src.x.isEmpty()) return;
-        if(!des.x.isEmpty() && des.x.peek().color!=cl) return;
+        if(des.x.size()>1 && des.x.peek().color!=cl) return;
+        if(!des.x.isEmpty() && des.x.peek().color!=cl){
+            char o = cl == 'w' ? 'b' : 'w';
+            if(cl=='w'){
+                moveChecker(t,24, o);
+            }
+            else{
+                moveChecker(t,25, o);
+            }
+        }
         int c12=t%12;
         int newX  = in_x + c12 * pw+ pw / 2 + (c12 >= 6 ? bar : 0);
         boolean top  = t < 12;

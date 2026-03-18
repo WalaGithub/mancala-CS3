@@ -239,7 +239,10 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
         }
         else {
             window.setColor(Color.WHITE);
-            window.drawString("Dice: " + d1.number + " + " + d2.number, 200, 20);
+            if(d1.number==d2.number) {
+                window.drawString("Double!: " + d1.number + " + " + d2.number + " go twice \uD83D\uDC45\uD83D\uDC45", 200, 20+40);
+            }
+            else window.drawString("Dice: " + d1.number + " + " + d2.number, 200, 20+40);
             window.drawString("left or right to choose, d to pick, f to move",330,20);
         }
         if(moveError!=null) {
@@ -273,7 +276,10 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
                 d2.roll();
                 cPlayer.onDiceRolled();
                 moveError=null;
-                System.out.println("Rolled: "+d1.number+" + "+d2.number);
+                if(d1.number==d2.number) {
+                    System.out.println("Rolled a double!: "+d1.number+" + "+d2.number);
+                }
+                else System.out.println("Rolled: "+d1.number+" + "+d2.number);
             }
             return;
         }

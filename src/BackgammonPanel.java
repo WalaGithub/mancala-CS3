@@ -209,7 +209,7 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
             }
             else a = (int) (Math.random() * 2) +1; iii=500000;
             window.setColor(Color.RED);
-            window.drawString(moveError,30,735);
+            window.drawString(moveError,30,725);
         }
     }
     @Override

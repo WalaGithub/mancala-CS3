@@ -82,6 +82,9 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
     }
     //fix/check logic here
     int travelIndex(int bI,char c) {
+        if(bI==25 || bI==24){
+            return -1;
+        }
         if(c=='w') {
             if (bI < 12) {
                 return 11-bI;
@@ -251,9 +254,15 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
         } else if (key == KeyEvent.VK_D) {
             triangle t = triangles[cursorP];
             if (!t.x.isEmpty() && t.x.peek().color == cPlayer.c) {
-                selectedP = cursorP;
-                moveError = null;
-                System.out.println("Picked checker on point " + selectedP);
+                if(!triangles[cPlayer.c=='w' ? 25:24].x.isEmpty()){
+                    selectedP =cPlayer.c=='w' ? 25:24;
+                    System.out.println("Forced to select piece in jail \nIf no move is possible, click e");
+                }
+                else{
+                    selectedP = cursorP;
+                    moveError = null;
+                    System.out.println("Picked checker on point " + selectedP);
+                }
             } else moveError = "No checker of yours on the point " + cursorP;
         } else if (key == KeyEvent.VK_F) {
             if (selectedP == -1) {
@@ -262,18 +271,14 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
                 moveError = "Already here, move yo cursor";
             } else tryMove(selectedP, cursorP);
         } else if (key == KeyEvent.VK_E) {
-            if (d1.used && d2.used) {
-                endTurn();
-            } else if (!d1.used && !d2.used) {
-                moveError = "Use your dice";
-            } else endTurn();
+            endTurn();
         }
     }
     void tryMove(int f, int t) {
         int tF = travelIndex(f, cPlayer.c);
         int tT = travelIndex(t, cPlayer.c);
         int dist = tT-tF;
-        if (dist <= 0) {
+        if (dist < 0) {
             moveError = "Move forward  " +
                     (cPlayer.c == 'w' ? "(follow top row right then bottom row right" : "(follow bottom row left then top row left)");
             return;
@@ -361,6 +366,9 @@ class BackgammonPanel extends JPanel implements Runnable, KeyListener{
         if(t>25){
             newX=in_x + 13* pw+ pw / 2+40;
             System.out.println(triangles[t].iUD);
+            if(des.x.size()+1==15){
+                System.out.println("player "+cl+" won!!!");
+            }
         }
         Checker c = src.x.pop();
         c.x = newX;
